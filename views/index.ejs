@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+    html,body{
+      height: 100%;
+      width: 100%;
+      display: flex;
+      background-color: black;
+    }
+    .left{
+      height: 100vh;
+      width: 20%;
+      /* background-color: lightblue; */
+      padding: 3vmax;
+      box-shadow: 0.2vmax 0 0.5vmax rgba(245, 245, 245, 0.492);
+    }
+    input{
+      padding: 0.5vmax;
+      color: whitesmoke;
+      border: none;
+      border-radius: 0.5vmax;
+      outline: none;
+      border-bottom: 0.1vmax solid rgba(245, 245, 245, 0.708);
+      background-color: transparent;
+      box-shadow: 0 0 0.5vmax rgba(245, 245, 245, 0.751);
+      margin-bottom: 2vmax;
+    }
+    ul{
+      list-style: none;
+    }
+    li{
+      width: 90%;
+      color: whitesmoke;
+      /* background-color: red; */
+      display: flex;
+      justify-content: space-between;
+    }
+    a{
+      text-decoration: none;
+      color: whitesmoke;
+      /* background-color: yellow; */
+      /* margin-right: 3.5vmax; */
+    }
+    .right{
+      height: 100vh;
+      width: 80%;
+      /* background-color: palegreen; */
+      padding: 3vmax;
+    }
+    p{
+      /* background-color: rebeccapurple; */
+      width: 10%;
+      color: whitesmoke;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1vmax;
+    }
+    form >textarea{
+      height: 75vh;
+      width: 100%;
+      background-color: transparent;
+      border: 0.1vmax dashed whitesmoke;
+      outline: none;
+      color: whitesmoke;
+      padding: 1vmax;
+    }
+    button{
+      padding: 0.5vmax 1vmax ;
+      color: whitesmoke;
+      font-weight: 700;
+      background-color: transparent;
+      border: none;
+      margin-top: 1vmax;
+      box-shadow: 0.2vmax 0.2vmax 0.2vmax rgba(245, 245, 245, 0.711);
+    }
+    button:active{
+      scale: 0.9;
+    }
+    h1{
+      margin: 3vmax auto;
+      letter-spacing: 0.2vmax;
+      color: red;
+      font-weight: 900;
+      font-size: 3vmax;
+    }
+    h4{
+      color: red;
+    }
+    h5{
+      color: whitesmoke;
+      margin-bottom: 0.5vmax;
+    }
+  </style>
+</head>
+<body>
+  
+  <div class="left">
+    <form action="/create" method="post">
+      <input type="text" name="filename" placeholder="filename.ext" id="">
+      
+    </form>
+    <ul>
+
+      <% if(files.length===0){ %>
+        <h4>NO FILE IS AVALABLE !</h4>
+      <% } %>
+      <% files.forEach(function(data){ %>
+          <li>
+            <a href="/edit/<%= data%>"> <%= data%> </a>
+            <a href="/delete/<%= data%>">❌</a>
+          </li>
+      <% }) %>
+    </ul>
+  </div>
+
+  <% if(!fname && !fdata){ %>
+    <h1>OOPS NO FILE IS OPENED !</h1>
+  <% }else{ %>
+
+    <div class="right">
+
+      <p>  <%= fname%> <a href="/">❌</a></p>
+      <form action="/save/<%= fname%>" method="post"> 
+        <textarea name="filedata" id="" cols="30" rows="10"> <%= fdata%> </textarea>
+        <button>SAVE</button>
+      </form>
+    </div>
+  
+  <% } %>
+
+
+</body>
+</html>
